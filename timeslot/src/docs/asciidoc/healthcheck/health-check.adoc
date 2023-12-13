@@ -1,0 +1,10 @@
+[[health-check]]
+=== 애플리케이션 상태 확인
+
+==== HTTP Request
+
+include::{snippets}/health-check/http-request.adoc[]
+
+==== HTTP Response
+
+include::{snippets}/health-check/http-response.adoc[]

@@ -1,4 +1,4 @@
-package com.biddan606.timeslot;
+package com.biddan606.timeslot.common.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.biddan606.timeslot.HealthCheckController;
+import com.biddan606.timeslot.common.controller.HealthCheckController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

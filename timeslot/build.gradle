@@ -40,6 +40,12 @@ dependencies {
 
     // apache commons lang3
     implementation 'org.apache.commons:commons-lang3:3.14.0'
+
+    // spring data jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // mysql
+    runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {

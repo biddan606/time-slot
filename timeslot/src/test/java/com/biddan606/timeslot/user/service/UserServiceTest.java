@@ -1,10 +1,11 @@
 package com.biddan606.timeslot.user.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import com.biddan606.timeslot.mock.FakeUserRepository;
 import com.biddan606.timeslot.user.service.command.UserCreateCommand;
-import org.junit.jupiter.api.AfterEach;
+import com.biddan606.timeslot.user.service.port.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,17 +13,11 @@ import org.junit.jupiter.api.Test;
 class UserServiceTest {
 
     private UserService userService;
-    private FakeUserRepository fakeUserRepository;
 
     @BeforeEach
     void init() {
-        fakeUserRepository = new FakeUserRepository();
-        userService = new UserService(fakeUserRepository, new UserMapper());
-    }
-
-    @AfterEach
-    void cleanup() {
-        fakeUserRepository.deleteAll();
+        UserRepository userRepository = new FakeUserRepository();
+        userService = new UserService(userRepository, new UserMapper());
     }
 
     @DisplayName("유저를 생성한다.")
@@ -36,9 +31,13 @@ class UserServiceTest {
         );
 
         // when
-        Long createdUserId = userService.create(command);
+        UserDto createdUserDtoDto = userService.create(command);
 
         // then
-        assertThat(createdUserId).isEqualTo(1L);
+        assertAll(
+                () -> assertThat(createdUserDtoDto.id()).isEqualTo(1L),
+                () -> assertThat(createdUserDtoDto.loginId()).isEqualTo(command.loginId()),
+                () -> assertThat(createdUserDtoDto.nickname()).isEqualTo(command.nickname())
+        );
     }
 }

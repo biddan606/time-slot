@@ -13,3 +13,8 @@ endif::[]
 == HealthCheck API
 
 include::healthcheck/health-check.adoc[]
+
+[[User-API]]
+== User API
+
+include::user/user.adoc[]

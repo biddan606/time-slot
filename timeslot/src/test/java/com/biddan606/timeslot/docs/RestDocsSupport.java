@@ -2,12 +2,10 @@ package com.biddan606.timeslot.docs;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,7 +19,7 @@ public abstract class RestDocsSupport {
 
     @BeforeEach
     void setup(RestDocumentationContextProvider provider) {
-
+        objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
         this.mockMvc = MockMvcBuilders.standaloneSetup(initController())
                 .apply(documentationConfiguration(provider))

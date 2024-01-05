@@ -13,11 +13,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public Long create(UserCreateCommand command) {
+    public UserDto create(UserCreateCommand command) {
         User user = userMapper.toUser(command);
 
         User savedUser = userRepository.save(user);
-
-        return savedUser.getId();
+        return UserDto.from(savedUser);
     }
 }
